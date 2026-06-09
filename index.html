@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Motorsports Dashboard</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="racefeeds.png">
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+    
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+<body class="bg-[#f8fafc] text-slate-900 dark:bg-[#09090b] dark:text-zinc-100 min-h-screen antialiased flex flex-col transition-colors duration-300">
+
+    <header class="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md border-b border-slate-200/80 dark:border-zinc-800/80 sticky top-0 z-50 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            
+            <div class="flex items-center gap-2">
+                <span class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
+                <h1 class="text-xl font-extrabold tracking-tight uppercase text-slate-950 dark:text-white">
+                    RACE<span class="text-slate-400 dark:text-zinc-500 font-normal lowercase">feeds</span>
+                </h1>
+            </div>
+            
+            <div class="w-full sm:w-72">
+                <input type="text" id="search-input" placeholder="Търси писта, сесия, серия..." 
+                       class="w-full px-4 py-2 text-sm bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 rounded-xl focus:outline-none focus:border-slate-400 dark:focus:border-zinc-600 focus:bg-white dark:focus:bg-zinc-900 text-slate-900 dark:text-zinc-100 transition">
+            </div>
+
+            <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
+                <div id="stats-today" class="text-xs font-bold bg-slate-100 dark:bg-zinc-800 text-slate-700 dark:text-zinc-300 px-4 py-2 rounded-full border border-slate-200/60 dark:border-zinc-700/50">
+                    0 СЕСИИ ДНЕС
+                </div>
+                <button id="theme-toggle" class="p-2 rounded-xl bg-slate-100 dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-lg hover:bg-slate-200 dark:hover:bg-zinc-700 transition">
+                    🌓
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl w-full mx-auto px-6 py-2 flex-1 space-y-4">
+        
+    <section class="w-full bg-slate-100/70 dark:bg-zinc-900/60 p-1.5 rounded-xl flex flex-wrap items-center gap-1">
+        
+        <a href="https://www.formula1.com/en/racing/2026" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center px-4 py-2 rounded-lg hover:bg-white dark:hover:bg-zinc-950 shadow-xs hover:shadow-xs transition duration-150 min-w-[70px]">
+            <img src="logoF1.png" alt="F1" class="w-10 h-6 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline'">
+            <span class="hidden text-[10px]"></span> 
+        </a>
+        
+        <a href="https://www.fiaformula2.com/Calendar" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center px-4 py-2 rounded-lg hover:bg-white dark:hover:bg-zinc-950 shadow-xs hover:shadow-xs transition duration-150 min-w-[70px]">
+            <img src="FIA_Formula_2_Championship_logo.svg.png" alt="F2" class="w-10 h-6 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline'">
+            <span class="hidden text-[10px]"></span>
+        </a>
+        
+        <a href="https://www.fiaformula3.com/Calendar" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center px-4 py-2 rounded-lg hover:bg-white dark:hover:bg-zinc-950 shadow-xs hover:shadow-xs transition duration-150 min-w-[70px]">
+            <img src="FIA_Formula_3_Championship_logo.svg.png" alt="F3" class="w-10 h-6 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline'">
+            <span class="hidden text-[10px]"></span>
+        </a>
+        
+        <a href="https://www.fiaformulae.com/en/calendar" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center px-4 py-2 rounded-lg hover:bg-white dark:hover:bg-zinc-950 shadow-xs hover:shadow-xs transition duration-150 min-w-[70px]">
+            <img src="Formula-e-logo-championship_2023.png" alt="FE" class="w-10 h-6 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline'">
+            <span class="hidden text-[10px]"></span>
+        </a>
+        
+        <a href="https://www.wrc.com/en/calendar?rb3TabId=upcoming" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center px-4 py-2 rounded-lg hover:bg-white dark:hover:bg-zinc-950 shadow-xs hover:shadow-xs transition duration-150 min-w-[70px]">
+            <img src="WRC.png" alt="WRC" class="w-10 h-6 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline'">
+            <span class="hidden text-[10px]"></span>
+        </a>
+        
+        <a href="https://www.motogp.com/en/calendar/2026?view=grid" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center px-4 py-2 rounded-lg hover:bg-white dark:hover:bg-zinc-950 shadow-xs hover:shadow-xs transition duration-150 min-w-[75px]">
+            <img src="MotoGP-Logo.png" alt="MotoGP" class="w-12 h-6 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline'">
+            <span class="hidden text-[10px]"></span>
+        </a>
+        
+        <a href="https://www.motogp.com/en/calendar?view=grid" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center px-4 py-2 rounded-lg hover:bg-white dark:hover:bg-zinc-950 shadow-xs hover:shadow-xs transition duration-150 min-w-[75px]">
+            <img src="Moto2_logo.png" alt="Moto2" class="w-12 h-6 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline'">
+            <span class="hidden text-[10px]"></span>
+        </a>
+        
+        <a href="https://www.motogp.com/en/calendar?view=grid" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center px-4 py-2 rounded-lg hover:bg-white dark:hover:bg-zinc-950 shadow-xs hover:shadow-xs transition duration-150 min-w-[75px]">
+            <img src="Moto3_logo.png" alt="Moto3" class="w-12 h-6 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline'">
+            <span class="hidden text-[10px]"></span>
+        </a>
+        
+    </section>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+            
+            <section id="next-session-widget" class="lg:col-span-2 bg-white dark:bg-zinc-900 p-8 rounded-3xl border border-slate-200/60 dark:border-zinc-800/80 shadow-sm flex flex-col justify-between min-h-[240px] relative overflow-hidden transition-colors duration-300">
+                <div class="absolute -right-10 -top-10 w-40 h-40 bg-slate-50 dark:bg-zinc-950 rounded-full pointer-events-none"></div>
+                
+                <div class="relative z-10 flex flex-wrap justify-between items-center gap-2">
+                    <span class="text-xs font-bold tracking-widest text-red-500 uppercase bg-red-50 dark:bg-red-500/10 py-1 px-3 rounded-md">
+                        ⚡ СЛЕДВАЩА ПРЕДСТОЯЩА СЕСИЯ
+                    </span>
+                    <span id="next-series-badge" class="text-xs font-extrabold uppercase bg-slate-950 dark:bg-zinc-800 text-white px-3 py-1 rounded-md border dark:border-zinc-700">--</span>
+                </div>
+
+                <div class="relative z-10 my-6 grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                    <div class="md:col-span-2 space-y-1">
+                        <h2 id="next-title" class="text-2xl md:text-3xl font-extrabold text-slate-950 dark:text-white tracking-tight">Зареждане...</h2>
+                        <p id="next-location" class="text-sm text-slate-500 dark:text-zinc-400 font-medium">📍 --</p>
+                    </div>
+                    <div id="countdown-box" class="bg-slate-950 dark:bg-black text-white p-4 rounded-2xl flex justify-around text-center font-mono shadow-md border dark:border-zinc-800">
+                        <div><span id="cd-days" class="text-xl font-extrabold block text-red-500">00</span><span class="text-[9px] text-slate-400">ДНИ</span></div>
+                        <div><span id="cd-hours" class="text-xl font-extrabold block">00</span><span class="text-[9px] text-slate-400">ЧАСА</span></div>
+                        <div><span id="cd-mins" class="text-xl font-extrabold block">00</span><span class="text-[9px] text-slate-400">МИН</span></div>
+                        <div><span id="cd-secs" class="text-xl font-extrabold block text-slate-500">00</span><span class="text-[9px] text-slate-400">СЕК</span></div>
+                    </div>
+                </div>
+
+                <div class="relative z-10 border-t border-slate-100 dark:border-zinc-800 pt-4 flex justify-between items-center text-xs font-bold text-slate-400 dark:text-zinc-500">
+                    <span>МЕСТНО ВРЕМЕ СТАРТ</span>
+                    <span id="next-time" class="text-slate-950 dark:text-zinc-300 text-sm font-extrabold">--</span>
+                </div>
+            </section>
+
+            <section class="bg-white dark:bg-zinc-900 p-6 rounded-3xl border border-slate-200/60 dark:border-zinc-800/80 shadow-sm flex flex-col justify-between transition-colors duration-300">
+                <div class="flex justify-between items-center mb-3">
+                    <span id="calendar-month-label" class="text-xs font-extrabold text-slate-900 dark:text-white uppercase tracking-wider">Юни 2026</span>
+                    <button id="reset-date-filter" class="text-[10px] bg-slate-100 dark:bg-zinc-800 hover:bg-slate-200 text-slate-500 dark:text-zinc-400 px-2 py-1 rounded-md font-bold hidden">❌ Изчисти</button>
+                </div>
+                <div class="grid grid-cols-7 gap-1 text-center text-[11px] font-bold text-slate-400 dark:text-zinc-500 mb-2">
+                    <div>П</div><div>В</div><div>С</div><div>Ч</div><div>П</div><div>С</div><div>Н</div>
+                </div>
+                <div id="mini-calendar-days" class="grid grid-cols-7 gap-1 text-center text-xs"></div>
+            </section>
+
+        </div>
+
+        <section class="space-y-3">
+            <h3 class="text-xs font-bold tracking-widest text-slate-400 dark:text-zinc-500 uppercase">Избор на канали</h3>
+            <div id="filter-buttons" class="flex flex-wrap gap-2 bg-white dark:bg-zinc-900 p-3 rounded-2xl border border-slate-200/60 dark:border-zinc-800/80 shadow-xs transition-colors duration-300"></div>
+        </section>
+
+        <section class="space-y-6">
+            <div class="border-b border-slate-200 dark:border-zinc-800 pb-2 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <h3 class="text-sm font-bold tracking-widest text-slate-400 dark:text-zinc-500 uppercase">ХРОНОЛОГИЧЕН ГРАФИК</h3>
+                
+                <div class="flex items-center gap-2 bg-white dark:bg-zinc-900 px-3 py-1.5 rounded-xl border border-slate-200/60 dark:border-zinc-800/80 shadow-xs transition-colors duration-300">
+                    <button id="prev-week-btn" class="p-1 px-2.5 rounded-lg bg-slate-100 dark:bg-zinc-800 hover:bg-slate-200 dark:hover:bg-zinc-700 text-slate-700 dark:text-zinc-300 font-bold disabled:opacity-30 disabled:pointer-events-none transition duration-150">
+                        &larr;
+                    </button>
+                    <span id="current-week-label" class="text-xs font-extrabold text-slate-800 dark:text-zinc-200 uppercase tracking-wider min-w-[180px] text-center">
+                        Зареждане...
+                    </span>
+                    <button id="next-week-btn" class="p-1 px-2.5 rounded-lg bg-slate-100 dark:bg-zinc-800 hover:bg-slate-200 dark:hover:bg-zinc-700 text-slate-700 dark:text-zinc-300 font-bold disabled:opacity-30 disabled:pointer-events-none transition duration-150">
+                        &rarr;
+                    </button>
+                </div>
+
+                <div id="active-day-indicator" class="text-xs font-bold text-red-500 dark:text-red-400 hidden">Филтрирано по ден от календара</div>
+            </div>
+            <div id="calendar-container" class="space-y-12"></div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white dark:bg-zinc-900 border-t border-slate-200 dark:border-zinc-800 py-8 text-center text-xs font-semibold text-slate-400 dark:text-zinc-500 transition-colors duration-300">
+        Личен панел за управление // RaceFeeds v3.0 &bull; 2026
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

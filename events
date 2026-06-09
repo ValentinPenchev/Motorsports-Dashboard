@@ -1,0 +1,98 @@
+[
+  {
+    "series": "WRC",
+    "round": 8,
+    "title": "Acropolis Rally Greece - Day 1",
+    "start": "2026-06-25T19:05",
+    "location": "Greece",
+  },
+  {
+    "series": "WRC",
+    "round": 8,
+    "title": "Acropolis Rally Greece - Day 2",
+    "start": "2026-06-26T08:48",
+    "location": "Greece",
+  },
+  {
+    "series": "WRC",
+    "round": 8,
+    "title": "Acropolis Rally Greece - Day 3",
+    "start": "2026-06-27T07:54",
+    "location": "Greece",
+  },
+  {
+    "series": "WRC",
+    "round": 8,
+    "title": "Acropolis Rally Greece - Day 4 (Power Stage)",
+    "start": "2026-06-28T08:28",
+    "end": "2026-06-28T14:00:00",
+    "location": "Greece",
+  },
+  {
+    "series": "WRC",
+    "round": 9,
+    "title": "Rally Estonia - Shakedown",
+    "start": "2026-07-17T08:00:00",
+    "location": "Estonia",
+  },
+  {
+    "series": "WRC",
+    "round": 9,
+    "title": "Rally Estonia - Day 1",
+    "start": "2026-07-11T13:03",
+    "end": "2026-07-16T20:00:00",
+    "location": "Estonia",
+    "surface": "Gravel"
+  },
+  {
+    "series": "WRC",
+    "round": 9,
+    "title": "Rally Estonia - Day 2",
+    "start": "2026-07-18T09:56",
+    "location": "Estonia",
+  },
+  {
+    "series": "WRC",
+    "round": 9,
+    "title": "Rally Estonia - Day 3",
+    "start": "2026-07-19T11:05",
+    "location": "Estonia",
+  },
+  {
+    "series": "WRC",
+    "round": 10,
+    "title": "Rally Finland - Shakedown",
+    "start": "2026-07-30T09:01",
+    "location": "Finland",
+  },
+  {
+    "series": "WRC",
+    "round": 10,
+    "title": "Rally Finland - Day 1",
+    "start": "2026-07-30T19:05",
+    "location": "Finland",
+  },
+  {
+    "series": "WRC",
+    "round": 10,
+    "title": "Rally Finland - Day 2",
+    "start": "2026-07-31T08:44",
+    "location": "Finland",
+  },
+  {
+    "series": "WRC",
+    "round": 10,
+    "title": "Rally Finland - Day 3",
+    "start": "2026-08-01T08:01",
+    "location": "Finland",
+  },
+  {
+    "series": "WRC",
+    "round": 10,
+    "title": "Rally Finland - Day 4 (Power Stage)",
+    "start": "2026-08-02T10:35",
+    "location": "Finland",
+  },
+
+  }
+]
